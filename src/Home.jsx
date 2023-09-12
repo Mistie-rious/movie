@@ -45,19 +45,20 @@ function Home() {
         </div>
         <div className='flex'>
             <img src={home}></img>
-            <span>Home</span>
+            <span className='ml-3'>Home</span>
         </div>
         <div className='flex'>
             <img src={show}></img>
-            <span>TV Show</span>
+            <span className='ml-3'>TV Show</span>
         </div>
         <div className='flex'>
             <img src={calendar}></img>
-            <span>Upcoming</span>
+            <span className='ml-3'>Upcoming</span>
         </div>
-        <div>Play movie tickets</div>
+        <div className='bg-rose-300 px-5 py-5'>Play movie tickets</div>
         <div className='flex'>
-            <img src={backdropImage}></img>
+            <img src={logout}></img>
+            <span className='ml-3'>Logout</span>
         </div>
         </nav>
         <div>
