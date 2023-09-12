@@ -5,9 +5,9 @@ import Card from './Card'
 import tomato from './assets/tomato.png'
 import imdb from './assets/IMDB.png'
 import facebook from './assets/fa-brands_facebook-square.png'
-import instagram from './assets/fa-brands_instagram-square.png'
-import twitter from './assets/fa-brands_twitter-square.png'
-import twitter from './assets/fa-brands_twitter-square.png'
+import instagram from './assets/fa-brands_instagram.png'
+import twitter from './assets/fa-brands_twitter.png'
+import youtube from './assets/fa-brands_youtube.png'
 function App() {
   
   const [search, setSearch] = useState("")
@@ -122,8 +122,20 @@ function App() {
 
 
       </div>
-      <footer>
-        <div></div>
+
+      <footer className='flex flex-col h-[145px] justify-between '>
+        <div className='flex justify-center'>
+      <img src={facebook} className='mr-[48px]'></img>
+        <img src={instagram} className='mr-[48px]'></img>
+        <img src={twitter} className='mr-[48px]'></img>
+        <img src={youtube} className=''></img>
+        </div>
+        <div className='flex justify-center font-bold text-[18px]'>
+          <span className='mr-[48px]'>Conditions Of Use</span>
+          <span className='mr-[48px]'>Privacy & Policy</span>
+          <span>Press Rooms</span>
+        </div>
+        <div className=' flex justify-center font-bold text-[18px] text-[#6B7280]'>© 2021 MovieBox by Adriana Eka Prayudha  </div>
       </footer>
       </div>
     </>

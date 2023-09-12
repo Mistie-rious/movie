@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom';
+import logo from './assets/tv.png'
 function Home() {
     
   const apiKey = '56b10ced2747113175093596cb0982d5'
     const { id } = useParams(); 
-    fetch(`https://api.themoviedb.org/3/find/${id}?api_key=${apiKey}`)
+    fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`)
     .then(response => {
         if(!response.ok){
             throw new Error('Couldnt fetch')
@@ -22,7 +23,14 @@ function Home() {
             console.error('Catch error', error)
         })
   return (
-    <div>Home</div>
+    <div>
+        <nav className='flex flex-col'>
+        <div className='flex'>
+            <img src={logo}></img>
+            <span>Moviebox</span>
+        </div>
+        </nav>
+    </div>
   )
 }
 
