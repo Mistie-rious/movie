@@ -6,11 +6,11 @@ function Card({title, releasedate, backdrop}) {
     
         <div className=''>
           <div data-testid = 'movie-card'>
-          <img src={backdropp} className=' h-[370px] w-[300px]'  data-testid="movie-poster" alt="Movie Poster" />
+          <img src={backdropp} className=' h-[350px] w-[350px]'  data-testid="movie-poster" alt="Movie Poster" />
 
             <div data-testid = 'movie-title' className='font-bold text-[18px]'>{title}
             </div>
-            <div data-testid = 'movie-release-date'>{releasedate} </div>
+            <div data-testid = 'movie-release-date'>Released on: {releasedate} </div>
              </div>
         </div>
     

@@ -4,6 +4,10 @@ import './App.css'
 import Card from './Card'
 import tomato from './assets/tomato.png'
 import imdb from './assets/IMDB.png'
+import facebook from './assets/fa-brands_facebook-square.png'
+import instagram from './assets/fa-brands_instagram-square.png'
+import twitter from './assets/fa-brands_twitter-square.png'
+import twitter from './assets/fa-brands_twitter-square.png'
 function App() {
   
   const [search, setSearch] = useState("")
@@ -118,6 +122,9 @@ function App() {
 
 
       </div>
+      <footer>
+        <div></div>
+      </footer>
       </div>
     </>
  
