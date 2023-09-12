@@ -111,7 +111,7 @@ function App() {
         <div className="grid grid-cols-3  gap-[80px]">
   {top10Movies.map((info) => (
     <Card
-      key={info.id}_
+      key={info.id}
       title={info.title}
       releasedate={info.release_date}
       backdrop={info.backdrop_path}
