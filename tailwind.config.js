@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'johnwick': 'url(./src/assets/Poster.png)'
+      }
+    },
   },
   plugins: [],
 }
