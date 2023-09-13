@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom';
 import logo from './assets/tv.png'
-import home from './assets/home.png'
+import home from './assets/Home.png'
 import show from './assets/TVshow.png'
 import projector from './assets/Projector.png'
 import calendar from './assets/Calendar.png'
@@ -65,8 +65,13 @@ function Home() {
         <div>
             <img src={backdropImage} className='w-[1198px] h-[400px] rounded-[20px]'></img>
         </div>
+<<<<<<< HEAD
         <div className='flex gap-3 flex-col'>
             <span>Title: {movieData.title}</span>
+=======
+        <div className='flex flex-col'>
+            <span classname='mb-6'>Title: {movieData.title}</span>
+>>>>>>> 06191e20c733efe7c9142097f73f1b6282485f40
             <span> Release Date:{movieData.release_date}</span>
             <span> Runtime: {movieData.runtime}</span>
         </div>
