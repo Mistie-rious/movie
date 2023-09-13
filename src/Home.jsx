@@ -18,6 +18,7 @@ function Home() {
     .then(response => {
         if(!response.ok){
             throw new Error('Couldnt fetch')
+            
         }
         else{
             return response.json()
@@ -57,7 +58,7 @@ function Home() {
             <img src={calendar}></img>
             <span className='ml-3'>Upcoming</span>
         </div>
-        <div className='rounded-md bg-slate-300 px-5 py-5'>Play movie tickets</div>
+        <div className='rounded-md text-start bg-slate-300 px-4 py-2'>Play movie tickets</div>
         <div className='flex'>
             <img src={logout}></img>
             <span className='ml-3'>Logout</span>
