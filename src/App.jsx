@@ -1,87 +1,79 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
+import './App.css';
+import Card from './Card';
+import tomato from './assets/tomato.png';
+import imdb from './assets/IMDB.png';
+import facebook from './assets/fa-brands_facebook-square.png';
+import instagram from './assets/fa-brands_instagram.png';
+import twitter from './assets/fa-brands_twitter.png';
+import youtube from './assets/fa-brands_youtube.png';
 
-import './App.css'
-import Card from './Card'
-import tomato from './assets/tomato.png'
-import imdb from './assets/IMDB.png'
-import facebook from './assets/fa-brands_facebook-square.png'
-import instagram from './assets/fa-brands_instagram.png'
-import twitter from './assets/fa-brands_twitter.png'
-import youtube from './assets/fa-brands_youtube.png'
 function App() {
-  
-  const [search, setSearch] = useState("")
-  const [url, setUrl] = useState("")
-  const [top10Movies, setTop10Movies] = useState([])
+  const [search, setSearch] = useState('');
+  const [query, setQuery] = useState('');
+  const [top10Movies, setTop10Movies] = useState([]);
 
-  const apiKey = '56b10ced2747113175093596cb0982d5'
-  const authToken = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NmIxMGNlZDI3NDcxMTMxNzUwOTM1OTZjYjA5ODJkNSIsInN1YiI6IjY0ZmU3Y2RjZmE0MDQ2MDBlMTdlYjEzOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.VaYdMJHAFK3NqbAlpY7YyY38XOaubJAT27HyuUR4qE4'
-  
+  const apiKey = '56b10ced2747113175093596cb0982d5';
+  const authToken = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NmIxMGNlZDI3NDcxMTMxNzUwOTM1OTZjYjA5ODJkNSIsInN1YiI6IjY0ZmU3Y2RjZmE0MDQ2MDBlMTdlYjEzOS';
 
-  const handleSubmit = (e) =>  {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(search)
+    console.log(search);
+    setQuery(search);
     setSearch("")
-  }
+  };
 
   const options = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: `Bearer ${authToken}`
-    }
+      Authorization: `Bearer ${authToken}`,
+    },
   };
+
   useEffect(() => {
- fetch('https://api.themoviedb.org/3/movie/top_rated', options)
-    .then(response => response.json())
-    .then(response => {
+    fetch('https://api.themoviedb.org/3/movie/top_rated', options)
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.results) {
+          const top10Movies = response.results.slice(0, 10);
+          console.log(top10Movies);
+          setTop10Movies(top10Movies);
+        } else {
+          console.log("Can't fetch API");
+        }
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
-      if(response.results){
-        const top10Movies = response.results.slice(0, 10);
-        console.log(top10Movies); 
-        setTop10Movies(top10Movies);
-  }
-  else{
-    console.log("Can't fetch API")
-  }
-})
-    .catch(err => console.error(err));
-
-  }, [])
-
-    
   return (
-
-
-
     <>
-    <div>
-      <div className='min-h-screen  bg-johnwick mb-[20px] max-h-fit'>
+      <div>
+        <div className="min-h-screen bg-johnwick mb-20 max-h-fit">
+          <nav className="flex justify-between items-center px-4 sm:px-6 lg:px-8">
+            <div className="flex">
+              <img src={tomato} alt="Tomato" className=" max-md:w-[20px]  max-md:h-[20px] h-8" />
+              <p className="ml-2 font-bold max-md:text-[14px] text-2xl text-white">Moviebox</p>
+            </div>
+            <form onSubmit={handleSubmit} className="flex my-4 justify-center">
+              <input
+                onChange={(e) => setSearch(e.target.value)}
+                type="text"
+                placeholder="What do you want to watch?"
+                className="w-full sm:w-96 bg-transparent text-white px-2 sm:px-4 h-10 sm:h-12 rounded-lg border-2"
+              />
+              <button type="submit" className="ml-2">
+                <img src="./src/assets/Search.png" alt="Search" className="w-6 h-6" />
+              </button>
+            </form>
+            <div className="flex items-center">
+              <p className="font-bold text-sm text-white">Sign in</p>
+              <img src="./src/assets/Menu.png" alt="Menu" className="ml-2 w-6 h-6" />
+            </div>
+          </nav>
 
-      <nav className='flex  justify-around   items-center'>
-        <div className='flex  '>
-      <img src='./src/assets/tv.png'/>
-      <p className='ml-[24px] font-bold text-[24px] text-white'>Moviebox</p>
-      </div>
-        <form onSubmit={handleSubmit} className='flex justify-center'>
-          <input onChange={(e) => setSearch(e.target.value)}
-          type='text'
-          placeholder='What do you want to watch?'
-           className=' w-[525px]  bg-transparent text-white px h-[36px] rounded-[6px] border-2'/>
-          <button 
-          type='submit'
-          className='-m-4'
-          >
-            <img src='./src/assets/Search.png'/>
-          </button>
-          </form >
-          <div className='flex '>
-            <p className='font-bold text-[16px] text-white'>Sign in</p>
-            <img src='./src/assets/Menu.png' className=' ml-[27px] w-[24px] h-[24px]'></img>
-          </div>
-        
-      </nav>
-      <div className='flex flex-col text-white                 w-[404px] my-[125px] mx-[82px]'>
+  
+      <div className='flex flex-col text-white  max-md:w-[200px]   w-[404px] my-[125px] mx-[82px]'>
       <div className='text-white text-[48px] font-bold'>
         John Wick 3: Parabellum
       </div>
@@ -108,7 +100,7 @@ function App() {
           <img src='./src/assets/Chevron.png'></img>
           </div>
         </div>
-        <div className="grid grid-cols-3  gap-[80px]">
+        <div className="grid grid-cols-3 max-sm:grid-cols-1 max-md:grid-cols-2 gap-[80px]">
   {top10Movies.map((info) => (
     <Card
       key={info.id}
@@ -123,14 +115,14 @@ function App() {
 
       </div>
 
-      <footer className='flex flex-col h-[145px] justify-between '>
+      <footer className='flex flex-col my-7   h-[150px] justify-between '>
         <div className='flex justify-center'>
       <img src={facebook} className='mr-[48px]'></img>
         <img src={instagram} className='mr-[48px]'></img>
         <img src={twitter} className='mr-[48px]'></img>
         <img src={youtube} className=''></img>
         </div>
-        <div className='flex justify-center font-bold text-[18px]'>
+        <div className='flex justify-center max-md:mx-10 font-bold text-[18px]'>
           <span className='mr-[48px]'>Conditions Of Use</span>
           <span className='mr-[48px]'>Privacy & Policy</span>
           <span>Press Rooms</span>

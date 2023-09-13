@@ -6,7 +6,7 @@ function Card({title, releasedate, backdrop}) {
     
         <div className=''>
           <div data-testid = 'movie-card'>
-          <img src={backdropp} className=' h-[350px] w-[350px]'  data-testid="movie-poster" alt="Movie Poster" />
+          <img src={backdropp} className=' max-md:h-[200px] max-md:w-[200px] h-[250px] w-[250px]'  data-testid="movie-poster" alt="Movie Poster" />
 
             <div data-testid = 'movie-title' className='font-bold text-[18px]'>{title}
             </div>
