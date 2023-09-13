@@ -37,11 +37,11 @@ function Home() {
           backdropImage = `https://image.tmdb.org/t/p/original/${movieData.backdrop_path}`;
         }
   return (
-    <div className='flex my-6 mx-9 gap-5'>
+    <div className='flex my-6 mx-9 gap-14'>
         <nav className='flex w-[226px] border-3 border-black h-screen justify-between flex-col'>
-        <div className='flex'>
+        <div className='flex items-center '>
             <img src={logo}></img>
-            <span>Moviebox</span>
+            <span className='ml-3'>Moviebox</span>
         </div>
         <div className='flex'>
             <img src={home}></img>
@@ -65,12 +65,12 @@ function Home() {
         <div>
             <img src={backdropImage} className='w-[1198px] h-[400px] rounded-[20px]'></img>
         </div>
-        <div className='flex flex-col'>
+        <div className='flex gap-3 flex-col'>
             <span>Title: {movieData.title}</span>
             <span> Release Date:{movieData.release_date}</span>
             <span> Runtime: {movieData.runtime}</span>
         </div>
-        <span>{movieData.overview}</span>
+        <span className='my-4'>{movieData.overview}</span>
         </div>
     </div>
   )
