@@ -6,7 +6,7 @@ import show from './assets/TVshow.png'
 import projector from './assets/Projector.png'
 import calendar from './assets/Calendar.png'
 import logout from './assets/Logout.png'
-
+import { Link } from 'react-router-dom';
 import star from './assets/Star.png'
 
 function Home() {
@@ -40,42 +40,44 @@ function Home() {
           backdropImage = `https://image.tmdb.org/t/p/original/${movieData.backdrop_path}`;
         }
   return (
-    <div className='flex my-6 mx-9 gap-14'>
-        <nav className='flex w-[226px] outline-2 border-black h-screen justify-between flex-col'>
+    <div className='flex min-h-screen max-h-fit gap-14'>
+        <nav className='flex rounded-3xl px-4 max-h-fit w-[400px] max-md:border-none border  justify-between flex-col'>
+            <Link  to={`/`} >
         <div className='flex items-center '>
-            <img src={logo} className='w-9'></img>
+            <img src={logo} className='w-8'></img>
             <span className='ml-3'>Moviebox</span>
         </div>
+        </Link>
         <div className='flex'>
             <img className='' src={home}></img>
             <span className='ml-3'>Home</span>
         </div>
         <div className='flex'>
-            <img src={show}></img>
+            <img src={show} className='w-7 h-7'></img>
             <span className='ml-3'>TV Show</span>
         </div>
         <div className='flex'>
             <img src={calendar}></img>
-            <span className='ml-3'>Upcoming</span>
+            <span className='w-fit ml-3'>Upcoming</span>
         </div>
-        <div className='rounded-md text-start bg-slate-300 px-4 py-2'>Play movie tickets</div>
+      
         <div className='flex'>
             <img src={logout}></img>
             <span className='ml-3'>Logout</span>
         </div>
         </nav>
-        <div>
-        <div>
-            <img src={backdropImage} className='w-[1198px]  h-[400px] rounded-[20px]'></img>
+        <div className='mx-6 my-6'>
+        <div className=''>
+            <img src={backdropImage} className='w-fit  h-fit rounded-[20px]'></img>
         </div>
-        <div className=' my-3 flex flex-col'>
+        <div className='my-3 flex flex-col'>
             <div className='flex justify-between' >
             
             <div className='flex flex-col'>
             <span data-testid = 'movie-title' className='font-bold'>{movieData.title}</span>
             <span data-testid = 'movie-release-date' className='mb-6'>{movieData.release_date}</span>
             </div>
-            <button className='bg-slate-300 px-1 h-fit py-2 rounded-sm hover:bg-rose-200 active:bg-rose-400 '>
+            <button className='bg-red-300 px-1 h-fit py-2 rounded-sm hover:bg-rose-200 active:bg-rose-400 '>
                 Add To Favorites
             </button>
             </div>

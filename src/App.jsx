@@ -7,11 +7,14 @@ import facebook from './assets/fa-brands_facebook-square.png';
 import instagram from './assets/fa-brands_instagram.png';
 import twitter from './assets/fa-brands_twitter.png';
 import youtube from './assets/fa-brands_youtube.png';
+import { Link } from 'react-router-dom';
+
 
 function App() {
   const [search, setSearch] = useState('');
   const [query, setQuery] = useState('');
   const [top10Movies, setTop10Movies] = useState([]);
+  const [movieDetails, setMovieDetails] = useState('');
 
   const apiKey = '56b10ced2747113175093596cb0982d5';
   const authToken = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NmIxMGNlZDI3NDcxMTMxNzUwOTM1OTZjYjA5ODJkNSIsInN1YiI6IjY0ZmU3Y2RjZmE0MDQ2MDBlMTdlYjEzOS';
@@ -101,14 +104,18 @@ function App() {
           </div>
         </div>
         <div className="grid grid-cols-3 max-sm:grid-cols-1 max-md:grid-cols-2 gap-[80px]">
-  {top10Movies.map((info) => (
+
+
+        {top10Movies.map((info) => (
+  <Link to={`/movie/${info.id}`} 
+  key={info.id}>
     <Card
-      key={info.id}
       title={info.title}
       releasedate={info.release_date}
       backdrop={info.backdrop_path}
     />
-  ))}
+  </Link>
+))}
 </div>
 
 
@@ -127,7 +134,7 @@ function App() {
           <span className='mr-[48px]'>Privacy & Policy</span>
           <span>Press Rooms</span>
         </div>
-        <div className=' flex justify-center font-bold text-[18px] text-[#6B7280]'>© 2021 MovieBox by Adriana Eka Prayudha  </div>
+        <div className=' flex justify-center font-bold text-[18px] text-[#6B7280]'>© 2021 MovieBox by Mistura Yahaya  </div>
       </footer>
       </div>
     </>
