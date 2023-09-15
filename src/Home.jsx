@@ -8,11 +8,14 @@ import calendar from './assets/Calendar.png'
 import logout from './assets/Logout.png'
 import { Link } from 'react-router-dom';
 import star from './assets/Star.png'
+import Loading from './Loading';
+import classNames from 'classnames';
 
 function Home() {
-
+    const [selected, setSelected] = useState(false)
   const apiKey = '56b10ced2747113175093596cb0982d5'
   const [movieData, setMovieData] = useState([])
+  const [loading, setLoading] = useState(true);
     const { id } = useParams(); 
     fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`)
     .then(response => {
@@ -33,13 +36,18 @@ function Home() {
         .catch (error => {
             console.error('Catch error', error)
         })
-
+        .finally(() => {
+            setLoading(false);
+          })
         let backdropImage = null;
 
         if (movieData && movieData.backdrop_path) {
           backdropImage = `https://image.tmdb.org/t/p/original/${movieData.backdrop_path}`;
         }
   return (
+    <div className='h-screen'>
+                {loading ? 
+        (<Loading/> ) : (
     <div className='flex min-h-screen max-h-fit gap-14'>
         <nav className='flex rounded-3xl px-4 max-h-fit w-[400px]   justify-between flex-col'>
             <Link  to={`/`} >
@@ -77,14 +85,17 @@ function Home() {
             <span data-testid = 'movie-title' className='font-bold'>{movieData.title}</span>
             <span data-testid = 'movie-release-date' className='mb-6'>Released on:{movieData.release_date}</span>
             </div>
-            <button className='bg-red-300 px-1 h-fit py-2 rounded-sm hover:bg-rose-200 active:bg-rose-400 '>
-                Add To Favorites
-            </button>
+            <button onClick={() => setSelected(!selected)} className={classNames('bg-slate-200 h-fit w-fit px-3',{
+        'bg-rose-200': selected,
+        'text-white' : selected
+        })}>Favorite</button>
             </div>
             <span data-testid = 'movie-title'> Runtime: {movieData.runtime} minutes</span>
         </div>
         <span data-testid = 'overview' className='my-4'>{movieData.overview}</span>
         </div>
+    </div>
+        )}
     </div>
   )
 }

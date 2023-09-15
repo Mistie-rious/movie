@@ -119,16 +119,15 @@ function App() {
 
 
         {top10Movies.map((info) => (
-  <Link to={`/movie/${info.id}`} 
-  key={info.id}>
-    <Card
-      title={info.title}
-      releasedate={info.release_date}
-      backdrop={info.backdrop_path}
-    />
-  </Link>
-
+  <Card
+    key={info.id}
+    title={info.title}
+    releasedate={info.release_date}
+    backdrop={info.backdrop_path}
+    info={info} 
+  />
 ))}
+
 </div>
 
 
