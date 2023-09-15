@@ -9,7 +9,6 @@ import twitter from './assets/fa-brands_twitter.png';
 import youtube from './assets/fa-brands_youtube.png';
 import Search from './assets/Search.png';
 import Menu from './assets/Menu.png';
-import { Link } from 'react-router-dom';
 import Loading from './Loading';
 import wick from './assets/Poster.png';
 
@@ -17,14 +16,14 @@ function App() {
   const [search, setSearch] = useState('');
   const [query, setQuery] = useState('');
   const [top10Movies, setTop10Movies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const apiKey = '56b10ced2747113175093596cb0982d5';
   const authToken = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NmIxMGNlZDI3NDcxMTMxNzUwOTM1OTZjYjA5ODJkNSIsInN1YiI6IjY0ZmU3Y2RjZmE0MDQ2MDBlMTdlYjEzOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.VaYdMJHAFK3NqbAlpY7YyY38XOaubJAT27HyuUR4qE4'
-  const [loading, setLoading] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(search);
     setQuery(search);
     setSearch('');
   };
@@ -39,15 +38,22 @@ function App() {
 
   useEffect(() => {
     fetch('https://api.themoviedb.org/3/movie/top_rated', options)
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Couldn't fetch API");
+        }
+        return response.json();
+      })
       .then((response) => {
         if (response.results) {
           const top10Movies = response.results.slice(0, 10);
-          console.log(top10Movies);
           setTop10Movies(top10Movies);
         } else {
-          console.log("Can't fetch API");
+          setError("Couldn't fetch top-rated movies");
         }
+      })
+      .catch((err) => {
+        setError(err.message);
       })
       .finally(() => {
         setLoading(false);
@@ -58,6 +64,10 @@ function App() {
     <div>
       {loading ? (
         <Loading />
+      ) : error ? (
+        <div className="error-message">
+          <p>{error}</p>
+        </div>
       ) : (
         <div
           className="min-h-screen mb-20 max-h-fit"
