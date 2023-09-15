@@ -53,7 +53,7 @@ function Home() {
             <Link  to={`/`} >
         <div className='flex items-center '>
             <img src={logo} className='w-8'></img>
-            <span className='ml-3'>Moviebox</span>
+            <span className='ml-3 my-5'>Moviebox</span>
         </div>
         </Link>
         <div className='flex'>
