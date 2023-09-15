@@ -10,7 +10,7 @@ function Card({title, releasedate, backdrop}) {
 
             <div data-testid = 'movie-title' className='font-bold text-[18px]'>{title}
             </div>
-            <div data-testid = 'movie-release-date'>Released on: {releasedate} </div>
+            <div data-testid = 'movie-release-date'>Released: {releasedate} </div>
              </div>
         </div>
     

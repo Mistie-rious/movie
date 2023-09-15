@@ -41,7 +41,7 @@ function Home() {
         }
   return (
     <div className='flex min-h-screen max-h-fit gap-14'>
-        <nav className='flex rounded-3xl px-4 max-h-fit w-[400px] max-md:border-none border  justify-between flex-col'>
+        <nav className='flex rounded-3xl px-4 max-h-fit w-[400px]   justify-between flex-col'>
             <Link  to={`/`} >
         <div className='flex items-center '>
             <img src={logo} className='w-8'></img>
@@ -75,7 +75,7 @@ function Home() {
             
             <div className='flex flex-col'>
             <span data-testid = 'movie-title' className='font-bold'>{movieData.title}</span>
-            <span data-testid = 'movie-release-date' className='mb-6'>{movieData.release_date}</span>
+            <span data-testid = 'movie-release-date' className='mb-6'>Released on:{movieData.release_date}</span>
             </div>
             <button className='bg-red-300 px-1 h-fit py-2 rounded-sm hover:bg-rose-200 active:bg-rose-400 '>
                 Add To Favorites
